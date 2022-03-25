@@ -1,5 +1,13 @@
 # HeroTimer
 
+Tool zum errechnen der Gesantzeit von Stunden in Hero-Excel dateien
+## Hero Excel Download
+
+1. Auf "Mitarbeiterverwaltung" gehen
+2. Dann auf "Zeiterfassung"
+3. Nach gewünschen Einstellungen filtern
+4. Button "Export" drücken und "Excel" auswählen 
+
 ## Installation
 
 1. Downlaod Zip via http://midenos.de/Hero.zip
@@ -15,5 +23,6 @@
 2. Excel Datei von Hero suchen
 3. Excel Datei öffen
 4. Arbeitszeit wird errechnet und unten angezeigt 
+
 
 
