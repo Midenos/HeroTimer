@@ -9,4 +9,11 @@
 5. Dann auf "Trotzdem Ausführen"
 6. Software startet
 
+## Anleitung
+
+1. "Open File" auswählen
+2. Excel Datei von Hero suchen
+3. Excel Datei öffen
+4. Arbeitszeit wird errechnet und unten angezeigt 
+
 
