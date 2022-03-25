@@ -1,3 +1,3 @@
 # HeroTimer
 
-Downlaod via midenos.de/Hero.zip
+Downlaod via [a link](midenos.de/Hero.zip)
