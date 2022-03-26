@@ -24,9 +24,9 @@ Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 3. Excel Datei öffen
 4. Arbeitszeit wird errechnet und unten angezeigt 
 
-![FAQ Pic 1](/ReadmePictures/Tool_1.JPG)
-![FAQ Pic 2](/ReadmePictures/Tool_2.JPG)
-![FAQ Pic 3](/ReadmePictures/Tool_3.JPG)
+![FAQ Pic 1](/ReadmePictures/tool_1.JPG)
+![FAQ Pic 2](/ReadmePictures/tool_2.JPG)
+![FAQ Pic 3](/ReadmePictures/tool_3.JPG)
 
 ## FAQ
 
