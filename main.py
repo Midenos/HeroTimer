@@ -7,7 +7,7 @@ from tkinter import *
 # -----GLOBALS-----
 FILEPATH = None
 DATA = None
-OPTION = 0
+OPTION = 3
 
 
 # -----FUNCTIONS-----
