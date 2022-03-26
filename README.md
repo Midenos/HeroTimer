@@ -1,6 +1,6 @@
 # HeroTimer
 
-Tool zum errechnen der Gesantzeit von Stunden in Hero-Excel dateien
+Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 ## Hero Excel Download
 
 1. Auf "Mitarbeiterverwaltung" gehen
