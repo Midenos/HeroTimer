@@ -37,3 +37,6 @@ Das Programm enthält keine Schadsoftware! Gern selbst einmal über Virus Total 
 
 ![Virus Total](/ReadmePictures/VirusTotal.JPG)
 
+- Fehler bei Starten (bitmap "data/hero.ico" not defined)
+
+Achten Sie darauf, dass der "data" Ordner dort liegt wo die Hero.exe ausgeführt wird und die aus der Zip enthaltene .ico Datei enthält
