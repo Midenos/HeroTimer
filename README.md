@@ -27,6 +27,7 @@ Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 ## FAQ
 
 - Windows Defender erkennt einen Trojaner
+
 Leider erkennt der Windows Defender fehlerhaft die mit PyInstaller erstellte Dateien, dies liegt an der Decodierung und hier müsste eine base64 oder grundsätzlich die Umwandlung von Text in binäre Kodierung durchgeführt werden. Durch die verwendeung von UTF-8 die für die Verwendung notwendig ist, arbeite ich noch an der Umsetzung.
 Das Programm enthält keine Schadsoftware! Gern selbst einmal über Virus Total laufen lassen.
 
