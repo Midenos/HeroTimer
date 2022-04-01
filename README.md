@@ -29,6 +29,8 @@ Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 2. Excel Datei von Hero suchen
 3. Excel Datei öffen
 4. Arbeitszeit nach ausgewählten Filtern errechnet und unten angezeigt 
+5. PDF erstellen durch "PDF erstellen" Button 
+6. Erstellte PDF befindet sich im Ordner der Hero.exe
 
 ![FAQ Pic 1](/ReadmePictures/tool_1.JPG)
 ![FAQ Pic 2](/ReadmePictures/tool_2.JPG)
