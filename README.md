@@ -52,3 +52,7 @@ Achten Sie darauf, dass der "data" Ordner dort liegt wo die Hero.exe ausgeführt
 - Beim klicken auf "PDF erstellen" passiert nichts und ich erhalte keine Meldung
 
 Achten Sie darauf, dass die "logo.png" vorhanden ist, ohne diese wird aktuell keine PDF erstellt(Wird noch überarbeitet)
+
+- Meine Logo sitzt nicht richtig
+
+Konfiguration hierfür wird noch in weiteren Patch kommen
