@@ -10,7 +10,7 @@ Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 
 ## Installation
 
-1. Downlaod Zip via http://midenos.de/Hero.zip
+1. Downlaod Zip via http://midenos.de/Hero.zip / Oder aus dem Git "Install Zip" order laden
 2. Dateien entpacken 
 3. "config.txt" Datei anpassen pro Zeile
     Ihre Firma
