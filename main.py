@@ -3,6 +3,7 @@ import pandas as pd
 from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import *
+import pdf
 
 # -----GLOBALS-----
 FILEPATH = None
@@ -11,6 +12,8 @@ DATA = None
 #              "Projektierung", "Vor-Ort-Termin", "Besprechung", "Pause", "Privat", "Keine"]
 CATEGORIE = ["Umsetzung", "Aufgabe", "Projektierung", "Vor-Ort-Termin", "Keine"]
 STATUS = ["Eingereicht", "Bestätigt"]
+PDF_DATA = None
+TIME_STR = ""
 
 
 # -----FUNCTIONS-----
@@ -65,6 +68,8 @@ def filter_df_by_status(df):
 
 def calculate_worktime():
     global DATA
+    global PDF_DATA
+    global TIME_STR
     df = DATA
     try:
         if FILEPATH is not None:
@@ -89,16 +94,26 @@ def calculate_worktime():
         messagebox.showerror("Data Error", "Data error, check file")
         gui.path_label.config(text="ERROR with: " + FILEPATH)
     else:
+        PDF_DATA = df
+        TIME_STR = str(hours) + ":" + str(minutes).zfill(2) + ":" + str(seconds).zfill(2)
         gui.worktime_label.config(text=str(hours) + ":" + str(minutes).zfill(2) + ":" + str(seconds).zfill(2))
         gui.path_label.config(text="In Bearbeitung: " + FILEPATH)
 
 
+def create_pdf():
+    if DATA is not None:
+        pdf.create_pdf(PDF_DATA, TIME_STR)
+        messagebox.showinfo("PDF erzeugt", "Die PDF Datei wurde erstellt")
+
+
 # -----MAIN GUI-----
 gui = GUI_Setup()
+
 cb_bes_var = IntVar(value=1)
 cb_pen_var = IntVar(value=1)
 cb_vor_var = IntVar(value=0)
 cb_gel_var = IntVar(value=0)
+
 cat_ums_var = IntVar(value=1)
 cat_pro_var = IntVar(value=1)
 cat_auf_var = IntVar(value=1)
@@ -112,11 +127,15 @@ cat_pau_var = IntVar(value=0)
 cat_pri_var = IntVar(value=0)
 cat_swe_var = IntVar(value=0)
 cat_nan_var = IntVar(value=1)
+
 gui.open_file_btn.config(command=lambda: open_file_for_pd())
+gui.create_pdf_btn.config(command=lambda: create_pdf())
+
 gui.bes_cb.config(variable=cb_bes_var, command=lambda: status_change("Bestätigt"))
 gui.pen_cb.config(variable=cb_pen_var, command=lambda: status_change("Eingereicht"))
 gui.vor_cb.config(variable=cb_vor_var, command=lambda: status_change("Vorläufig"))
 gui.gel_cb.config(variable=cb_gel_var, command=lambda: status_change("Gelöscht"))
+
 gui.cat_cb_nan.config(variable=cat_nan_var, command=lambda: categorie_change("Keine"))
 gui.cat_cb_ums.config(variable=cat_ums_var, command=lambda: categorie_change("Umsetzung"))
 gui.cat_cb_pro.config(variable=cat_pro_var, command=lambda: categorie_change("Projektierung"))
@@ -130,4 +149,5 @@ gui.cat_cb_mat.config(variable=cat_mat_var, command=lambda: categorie_change("Ma
 gui.cat_cb_pau.config(variable=cat_pau_var, command=lambda: categorie_change("Pause"))
 gui.cat_cb_pri.config(variable=cat_pri_var, command=lambda: categorie_change("Privat"))
 gui.cat_cb_swe.config(variable=cat_swe_var, command=lambda: categorie_change("Schlechtwetter"))
+
 gui.root.mainloop()

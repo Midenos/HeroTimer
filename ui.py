@@ -8,7 +8,7 @@ class GUI_Setup:
     def __init__(self):
         self.root = Tk()
         self.root.config(bg=THEME_COLOR, pady=20, padx=20)
-        self.root.minsize(500, 500)
+        self.root.minsize(500, 510)
         self.root.iconbitmap("data/hero.ico")
         self.root.title("Hero Timer")
 
@@ -17,7 +17,7 @@ class GUI_Setup:
         self.header_label.place(x=225, y=20, anchor=CENTER)
 
         self.open_file_btn = Button()
-        self.open_file_btn.config(text="Open File", width=30)
+        self.open_file_btn.config(text="Datei öffnen", width=30)
         self.open_file_btn.place(x=225, y=70, anchor=CENTER)
 
         self.state_label = Label()
@@ -108,6 +108,10 @@ class GUI_Setup:
         self.path_label = Label()
         self.path_label.config(text="", bg=THEME_COLOR, font=("Arial", 10))
         self.path_label.place(x=225, y=100, anchor=CENTER)
+
+        self.create_pdf_btn = Button()
+        self.create_pdf_btn.config(text="Erstelle PDF", width=30)
+        self.create_pdf_btn.place(x=225, y=460, anchor=CENTER)
 
 
 
