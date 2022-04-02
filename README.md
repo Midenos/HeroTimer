@@ -1,4 +1,4 @@
-# HeroTimer
+# HeroTimer (02.04.2022)
 
 Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 ## Hero Excel Download
