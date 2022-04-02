@@ -23,8 +23,9 @@ Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 
 1. "Open File" auswählen
 2. Excel Datei von Hero suchen und auswählen/öffnen
-4. Arbeitszeit wird je nach ausgewählten Filtern errechnet und unten angezeigt 
-5. "Optionen" Button zum einstellen der Firmenanschrift und des Logos wählen  
+3. Arbeitszeit wird je nach ausgewählten Filtern errechnet und unten angezeigt 
+4. "Optionen" Button zum einstellen der Firmenanschrift und des Logos wählen  
+5. Projekt und Dateiname zum erstellen der PDF eintragen
 6. PDF erstellen durch "PDF erstellen" Button 
 7. Erstellte PDF befindet sich im Ordner der Hero.exe
 
