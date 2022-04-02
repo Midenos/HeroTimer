@@ -52,4 +52,5 @@ Achten Sie darauf, dass die "logo.png" vorhanden ist, ohne diese wird aktuell ke
 
 - Meine Logo sitzt nicht richtig
 
-Konfiguration hierfür wird noch in weiteren Patch kommen
+Sie können in der Software die Optionen für das Logo ändern, X-Position scheibt das Logo horizontal Y-Position vertikal.
+Die Größe stellen Sie entsprechend Ihrer Wünsche ein, probieren Sie verschiedene Werte, größere Zahl bedeutet größeres Logo.
