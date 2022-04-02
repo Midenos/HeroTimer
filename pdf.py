@@ -4,7 +4,6 @@ from fpdf import FPDF
 # -----GLOBALS-----
 DATA = None
 TIME = ""
-COUNT = 0
 PDF_DATA = ""
 COMPANY_DATA = []
 HEAD_LABEL = ""
@@ -19,7 +18,8 @@ with open("config.txt", "r", encoding="UTF-8") as file:
 # -----Header Inheritance-----
 class PDF(FPDF):
     def header(self):
-        self.image('logo.png', int(COMPANY_DATA[4]), int(COMPANY_DATA[5]), int(COMPANY_DATA[3]))
+        if COMPANY_DATA[6] == 1:
+            self.image('logo.png', int(COMPANY_DATA[4]), int(COMPANY_DATA[5]), int(COMPANY_DATA[3]))
         self.set_font('helvetica', 'B', 12)
         self.cell(60, 6, f'{COMPANY_DATA[0]}', border=0, align='L', ln=1)
         self.cell(60, 6, f'{COMPANY_DATA[1]}', border=0, align='L', ln=1)

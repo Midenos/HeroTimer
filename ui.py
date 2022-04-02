@@ -9,6 +9,8 @@ class GUI_Setup:
     # -----Main Window Setup-----
     def __init__(self):
         # -----Option Window Init-----
+        self.use_logo_var = None
+        self.use_logo_cb = None
         self.logo_size_entry = None
         self.logo_y_entry = None
         self.logo_x_entry = None
@@ -139,9 +141,13 @@ class GUI_Setup:
 
     # -----Option Window Setup-----
     def open_option_window(self):
+        self.use_logo_var = IntVar()
+
         options_window = Toplevel(self.root)
         options_window.config(bg=THEME_COLOR, pady=20, padx=20)
         options_window.geometry("400x300")
+        options_window.iconbitmap("data/hero.ico")
+        options_window.title("Optionen")
 
         options_company_label = Label(options_window)
         options_company_label.config(text="Firmendaten", bg=THEME_COLOR, font=("Arial", 12), fg="#ffdd00")
@@ -193,11 +199,20 @@ class GUI_Setup:
         logo_size_label.config(text="Größe des Logos", bg=THEME_COLOR, font=("Arial", 10))
         logo_size_label.place(x=106, y=190, anchor=CENTER)
 
+        self.use_logo_cb = Checkbutton(options_window)
+        self.use_logo_cb.config(variable=self.use_logo_var, text="Verwende Logo", bg=THEME_COLOR,
+                                highlightcolor=THEME_COLOR, command=self.use_logo)
+        self.use_logo_cb.place(x=5, y=215, anchor="w")
+        self.use_logo_var.set(int(pdf.COMPANY_DATA[6]))
+
         self.save_options_btn = Button(options_window)
         self.save_options_btn.config(text="Speichern", width=20, command=self.save_options)
-        self.save_options_btn.place(x=190, y=240, anchor=CENTER)
+        self.save_options_btn.place(x=190, y=250, anchor=CENTER)
 
     # -----FUNCTIONS-----
+    def use_logo(self):
+        pdf.COMPANY_DATA[6] = self.use_logo_var.get()
+
     def save_options(self):
         pdf.COMPANY_DATA[0] = self.company_name_entry.get()
         pdf.COMPANY_DATA[1] = self.company_street_entry.get()
