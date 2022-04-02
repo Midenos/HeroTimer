@@ -18,7 +18,7 @@ with open("config.txt", "r", encoding="UTF-8") as file:
 # -----Header Inheritance-----
 class PDF(FPDF):
     def header(self):
-        if COMPANY_DATA[6] == 1:
+        if COMPANY_DATA[6] == "1":
             self.image('logo.png', int(COMPANY_DATA[4]), int(COMPANY_DATA[5]), int(COMPANY_DATA[3]))
         self.set_font('helvetica', 'B', 12)
         self.cell(60, 6, f'{COMPANY_DATA[0]}', border=0, align='L', ln=1)

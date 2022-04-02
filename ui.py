@@ -211,7 +211,7 @@ class GUI_Setup:
 
     # -----FUNCTIONS-----
     def use_logo(self):
-        pdf.COMPANY_DATA[6] = self.use_logo_var.get()
+        pdf.COMPANY_DATA[6] = str(self.use_logo_var.get())
 
     def save_options(self):
         pdf.COMPANY_DATA[0] = self.company_name_entry.get()
