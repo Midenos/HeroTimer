@@ -12,25 +12,21 @@ Tool zum errechnen der Gesamtzeit von Stunden in Hero-Excel Dateien
 
 1. Downlaod Zip via http://midenos.de/Hero.zip / Oder aus dem Git "Install Zip" Ordner laden
 2. Dateien entpacken 
-3. "config.txt" Datei anpassen pro Zeile
-    Ihre Firma
-    Ihre Straße
-    Ihre PLZ
-4. Eigenes Logo verwenden, Dateiname und Dateityp muss erhalten eingehalten werden "logo.png"
-5. Hero.exe ausführen
-6. Bei Windows Sicherheitsmeldungen trotzdem zulassen (Einmalig, weitere Infos in FAQ)
-7. Auf "Weitere Informationen" klicken
-8. Dann auf "Trotzdem Ausführen"
-9. Software startet
+3. Logo bei bedarf durch eigenes erstzen, Dateiname und Dateityp muss eingehalten werden "logo.png"
+4. Hero.exe ausführen
+5. Bei Windows Sicherheitsmeldungen trotzdem zulassen (Einmalig, weitere Infos in FAQ)
+6. Auf "Weitere Informationen" klicken
+7. Dann auf "Trotzdem Ausführen"
+8. Software startet
 
 ## Anleitung
 
 1. "Open File" auswählen
-2. Excel Datei von Hero suchen
-3. Excel Datei öffen
-4. Arbeitszeit nach ausgewählten Filtern errechnet und unten angezeigt 
-5. PDF erstellen durch "PDF erstellen" Button 
-6. Erstellte PDF befindet sich im Ordner der Hero.exe
+2. Excel Datei von Hero suchen und auswählen/öffnen
+4. Arbeitszeit wird je nach ausgewählten Filtern errechnet und unten angezeigt 
+5. "Optionen" Button zum einstellen der Firmenanschrift und des Logos wählen  
+6. PDF erstellen durch "PDF erstellen" Button 
+7. Erstellte PDF befindet sich im Ordner der Hero.exe
 
 ![FAQ Pic 1](/ReadmePictures/tool_1.JPG)
 ![FAQ Pic 2](/ReadmePictures/tool_2.JPG)
