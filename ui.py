@@ -1,14 +1,26 @@
 from tkinter import *
+import pdf
 
+# -----GLOBALS-----
 THEME_COLOR = "#156db5"
 
 
 class GUI_Setup:
-
+    # -----Main Window Setup-----
     def __init__(self):
+        # -----Option Window Init-----
+        self.logo_size_entry = None
+        self.logo_y_entry = None
+        self.logo_x_entry = None
+        self.save_options_btn = None
+        self.company_plz_entry = None
+        self.company_name_entry = None
+        self.company_street_entry = None
+
+        # -----Main Window Init-----
         self.root = Tk()
         self.root.config(bg=THEME_COLOR, pady=20, padx=20)
-        self.root.minsize(500, 510)
+        self.root.minsize(500, 590)
         self.root.iconbitmap("data/hero.ico")
         self.root.title("Hero Timer")
 
@@ -109,9 +121,88 @@ class GUI_Setup:
         self.path_label.config(text="", bg=THEME_COLOR, font=("Arial", 10))
         self.path_label.place(x=225, y=100, anchor=CENTER)
 
+        self.project_label = Label()
+        self.project_label.config(text="Projekt und Dateiname:", bg=THEME_COLOR, font=("Arial", 10))
+        self.project_label.place(x=225, y=490, anchor=CENTER)
+
+        self.inp_project_name = Entry()
+        self.inp_project_name.config(width=36)
+        self.inp_project_name.place(x=225, y=510, anchor=CENTER)
+
         self.create_pdf_btn = Button()
-        self.create_pdf_btn.config(text="Erstelle PDF", width=30)
-        self.create_pdf_btn.place(x=225, y=460, anchor=CENTER)
+        self.create_pdf_btn.config(text="Erstelle PDF", width=20)
+        self.create_pdf_btn.place(x=300, y=540, anchor=CENTER)
 
+        self.option_window_btn = Button()
+        self.option_window_btn.config(text="Optionen", width=20)
+        self.option_window_btn.place(x=150, y=540, anchor=CENTER)
 
+    # -----Option Window Setup-----
+    def open_option_window(self):
+        options_window = Toplevel(self.root)
+        options_window.config(bg=THEME_COLOR, pady=20, padx=20)
+        options_window.geometry("400x300")
 
+        options_company_label = Label(options_window)
+        options_company_label.config(text="Firmendaten", bg=THEME_COLOR, font=("Arial", 12), fg="#ffdd00")
+        options_company_label.place(x=190, y=10, anchor=CENTER)
+
+        options_logo_label = Label(options_window)
+        options_logo_label.config(text="Logo Einstellungen", bg=THEME_COLOR, font=("Arial", 12), fg="#ffdd00")
+        options_logo_label.place(x=190, y=120, anchor=CENTER)
+
+        self.company_name_entry = Entry(options_window)
+        self.company_name_entry.insert(0, string=pdf.COMPANY_DATA[0])
+        self.company_name_entry.config(width=40)
+        self.company_name_entry.place(x=10, y=40, anchor="w")
+
+        self.company_street_entry = Entry(options_window)
+        self.company_street_entry.insert(0, string=pdf.COMPANY_DATA[1])
+        self.company_street_entry.config(width=40)
+        self.company_street_entry.place(x=10, y=60, anchor="w")
+
+        self.company_plz_entry = Entry(options_window)
+        self.company_plz_entry.insert(0, string=pdf.COMPANY_DATA[2])
+        self.company_plz_entry.config(width=40)
+        self.company_plz_entry.place(x=10, y=80, anchor="w")
+
+        self.logo_x_entry = Entry(options_window)
+        self.logo_x_entry.insert(0, string=pdf.COMPANY_DATA[4])
+        self.logo_x_entry.config(width=5)
+        self.logo_x_entry.place(x=10, y=150, anchor="w")
+
+        logo_x_label = Label(options_window)
+        logo_x_label.config(text="X - Position", bg=THEME_COLOR, font=("Arial", 10))
+        logo_x_label.place(x=90, y=150, anchor=CENTER)
+
+        self.logo_y_entry = Entry(options_window)
+        self.logo_y_entry.insert(0, string=pdf.COMPANY_DATA[5])
+        self.logo_y_entry.config(width=5)
+        self.logo_y_entry.place(x=10, y=170, anchor="w")
+
+        logo_y_label = Label(options_window)
+        logo_y_label.config(text="Y - Position", bg=THEME_COLOR, font=("Arial", 10))
+        logo_y_label.place(x=90, y=170, anchor=CENTER)
+
+        self.logo_size_entry = Entry(options_window)
+        self.logo_size_entry.insert(0, string=pdf.COMPANY_DATA[3])
+        self.logo_size_entry.config(width=5)
+        self.logo_size_entry.place(x=10, y=190, anchor="w")
+
+        logo_size_label = Label(options_window)
+        logo_size_label.config(text="Größe des Logos", bg=THEME_COLOR, font=("Arial", 10))
+        logo_size_label.place(x=106, y=190, anchor=CENTER)
+
+        self.save_options_btn = Button(options_window)
+        self.save_options_btn.config(text="Speichern", width=20, command=self.save_options)
+        self.save_options_btn.place(x=190, y=240, anchor=CENTER)
+
+    # -----FUNCTIONS-----
+    def save_options(self):
+        pdf.COMPANY_DATA[0] = self.company_name_entry.get()
+        pdf.COMPANY_DATA[1] = self.company_street_entry.get()
+        pdf.COMPANY_DATA[2] = self.company_plz_entry.get()
+        pdf.COMPANY_DATA[3] = self.logo_size_entry.get()
+        pdf.COMPANY_DATA[4] = self.logo_x_entry.get()
+        pdf.COMPANY_DATA[5] = self.logo_y_entry.get()
+        pdf.save_pdf_data()

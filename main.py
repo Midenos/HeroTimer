@@ -8,9 +8,9 @@ import pdf
 # -----GLOBALS-----
 FILEPATH = None
 DATA = None
-# CATEGORIE = ["Umsetzung", "Büro", "Homeoffice", "Schlechtwetter", "Materialfahrt", "Aufgabe", "Fahrtzeit",
+# CATEGORY = ["Umsetzung", "Büro", "Homeoffice", "Schlechtwetter", "Materialfahrt", "Aufgabe", "Fahrtzeit",
 #              "Projektierung", "Vor-Ort-Termin", "Besprechung", "Pause", "Privat", "Keine"]
-CATEGORIE = ["Umsetzung", "Aufgabe", "Projektierung", "Vor-Ort-Termin", "Keine"]
+CATEGORY = ["Umsetzung", "Aufgabe", "Projektierung", "Vor-Ort-Termin", "Keine"]
 STATUS = ["Eingereicht", "Bestätigt"]
 PDF_DATA = None
 TIME_STR = ""
@@ -28,14 +28,15 @@ def open_file_for_pd():
         FILEPATH = None
         messagebox.showerror("Excel Error", "File Error, check excel data")
     else:
+        print(str(DATA["Start"][0]).split(",")[0])
         calculate_worktime()
 
 
-def categorie_change(cat_string):
-    if cat_string in CATEGORIE:
-        CATEGORIE.remove(cat_string)
+def category_change(cat_string):
+    if cat_string in CATEGORY:
+        CATEGORY.remove(cat_string)
     else:
-        CATEGORIE.append(cat_string)
+        CATEGORY.append(cat_string)
     calculate_worktime()
 
 
@@ -50,7 +51,7 @@ def status_change(stat_string):
 def filter_df_by_categories(df):
     df['Kategorie'] = df['Kategorie'].fillna("Keine")
     for index, row in df.iterrows():
-        if row["Kategorie"] in CATEGORIE:
+        if row["Kategorie"] in CATEGORY:
             pass
         else:
             df = df.drop(index)
@@ -101,9 +102,11 @@ def calculate_worktime():
 
 
 def create_pdf():
-    if DATA is not None:
-        pdf.create_pdf(PDF_DATA, TIME_STR)
+    if PDF_DATA is not None:
+        pdf.create_pdf(PDF_DATA, TIME_STR, gui.inp_project_name.get())
         messagebox.showinfo("PDF erzeugt", "Die PDF Datei wurde erstellt")
+    else:
+        messagebox.showinfo("Keine Daten", "Bitte wählen Sie zu erst Ihre Daten korrekt aus")
 
 
 # -----MAIN GUI-----
@@ -130,24 +133,25 @@ cat_nan_var = IntVar(value=1)
 
 gui.open_file_btn.config(command=lambda: open_file_for_pd())
 gui.create_pdf_btn.config(command=lambda: create_pdf())
+gui.option_window_btn.config(command=lambda: gui.open_option_window())
 
 gui.bes_cb.config(variable=cb_bes_var, command=lambda: status_change("Bestätigt"))
 gui.pen_cb.config(variable=cb_pen_var, command=lambda: status_change("Eingereicht"))
 gui.vor_cb.config(variable=cb_vor_var, command=lambda: status_change("Vorläufig"))
 gui.gel_cb.config(variable=cb_gel_var, command=lambda: status_change("Gelöscht"))
 
-gui.cat_cb_nan.config(variable=cat_nan_var, command=lambda: categorie_change("Keine"))
-gui.cat_cb_ums.config(variable=cat_ums_var, command=lambda: categorie_change("Umsetzung"))
-gui.cat_cb_pro.config(variable=cat_pro_var, command=lambda: categorie_change("Projektierung"))
-gui.cat_cb_auf.config(variable=cat_auf_var, command=lambda: categorie_change("Aufgabe"))
-gui.cat_cb_vot.config(variable=cat_vot_var, command=lambda: categorie_change("Vor-Ort-Termin"))
-gui.cat_cb_hom.config(variable=cat_hom_var, command=lambda: categorie_change("Homeoffice"))
-gui.cat_cb_bes.config(variable=cat_bes_var, command=lambda: categorie_change("Besprechung"))
-gui.cat_cb_bue.config(variable=cat_bue_var, command=lambda: categorie_change("Büro"))
-gui.cat_cb_fah.config(variable=cat_fah_var, command=lambda: categorie_change("Fahrtzeit"))
-gui.cat_cb_mat.config(variable=cat_mat_var, command=lambda: categorie_change("Materialfahrt"))
-gui.cat_cb_pau.config(variable=cat_pau_var, command=lambda: categorie_change("Pause"))
-gui.cat_cb_pri.config(variable=cat_pri_var, command=lambda: categorie_change("Privat"))
-gui.cat_cb_swe.config(variable=cat_swe_var, command=lambda: categorie_change("Schlechtwetter"))
+gui.cat_cb_nan.config(variable=cat_nan_var, command=lambda: category_change("Keine"))
+gui.cat_cb_ums.config(variable=cat_ums_var, command=lambda: category_change("Umsetzung"))
+gui.cat_cb_pro.config(variable=cat_pro_var, command=lambda: category_change("Projektierung"))
+gui.cat_cb_auf.config(variable=cat_auf_var, command=lambda: category_change("Aufgabe"))
+gui.cat_cb_vot.config(variable=cat_vot_var, command=lambda: category_change("Vor-Ort-Termin"))
+gui.cat_cb_hom.config(variable=cat_hom_var, command=lambda: category_change("Homeoffice"))
+gui.cat_cb_bes.config(variable=cat_bes_var, command=lambda: category_change("Besprechung"))
+gui.cat_cb_bue.config(variable=cat_bue_var, command=lambda: category_change("Büro"))
+gui.cat_cb_fah.config(variable=cat_fah_var, command=lambda: category_change("Fahrtzeit"))
+gui.cat_cb_mat.config(variable=cat_mat_var, command=lambda: category_change("Materialfahrt"))
+gui.cat_cb_pau.config(variable=cat_pau_var, command=lambda: category_change("Pause"))
+gui.cat_cb_pri.config(variable=cat_pri_var, command=lambda: category_change("Privat"))
+gui.cat_cb_swe.config(variable=cat_swe_var, command=lambda: category_change("Schlechtwetter"))
 
 gui.root.mainloop()
