@@ -1,3 +1,5 @@
+import tkinter
+
 from ui import GUI_Setup
 import pandas as pd
 from tkinter import filedialog
@@ -24,11 +26,14 @@ def open_file_for_pd():
                                           filetypes=(("Excel files", "*.xls"), ("Excel files", "*.xlsx")))
     try:
         DATA = pd.read_excel(FILEPATH)
-    except:
+    except FileNotFoundError:
+        FILEPATH = None
+        gui.path_label.config(text="Keine Datei ausgewählt")
+        gui.worktime_label.config(text="00:00:00")
+    except TypeError:
         FILEPATH = None
         messagebox.showerror("Excel Error", "File Error, check excel data")
     else:
-        print(str(DATA["Start"][0]).split(",")[0])
         calculate_worktime()
 
 
@@ -91,14 +96,19 @@ def calculate_worktime():
         hours += int(minutes / 60)
         minutes = minutes % 60
         seconds = seconds % 60
-    except:
-        messagebox.showerror("Data Error", "Data error, check file")
-        gui.path_label.config(text="ERROR with: " + FILEPATH)
+    except KeyError:
+        messagebox.showerror("Key Error", "Schlüssel nicht gefunden")
+        gui.path_label.config(text=f"ERROR with: {FILEPATH}")
+        gui.worktime_label.config(text="00:00:00")
+    except TypeError:
+        messagebox.showerror("Type Error", "Daten konnten nicht gelesen werden")
+        gui.path_label.config(text=f"ERROR with: {FILEPATH}")
+        gui.worktime_label.config(text="00:00:00")
     else:
         PDF_DATA = df
         TIME_STR = str(hours) + ":" + str(minutes).zfill(2) + ":" + str(seconds).zfill(2)
         gui.worktime_label.config(text=str(hours) + ":" + str(minutes).zfill(2) + ":" + str(seconds).zfill(2))
-        gui.path_label.config(text="In Bearbeitung: " + FILEPATH)
+        gui.path_label.config(text=f"In Bearbeitung: {FILEPATH}")
 
 
 def create_pdf():
@@ -106,7 +116,7 @@ def create_pdf():
         pdf.create_pdf(PDF_DATA, TIME_STR, gui.inp_project_name.get())
         messagebox.showinfo("PDF erzeugt", "Die PDF Datei wurde erstellt")
     else:
-        messagebox.showinfo("Keine Daten", "Bitte wählen Sie zu erst Ihre Daten korrekt aus")
+        messagebox.showwarning("Keine Daten", "Bitte wählen Sie zu erst Ihre Daten korrekt aus")
 
 
 # -----MAIN GUI-----

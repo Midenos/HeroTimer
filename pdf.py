@@ -26,6 +26,12 @@ class PDF(FPDF):
         self.cell(60, 6, f'{COMPANY_DATA[2]}', border=0, align='L', ln=1)
         self.ln(20)
 
+    def footer(self):
+        if COMPANY_DATA[8] == "1":
+            self.set_font('helvetica', 'B', 12)
+            self.set_y(-15)
+            self.cell(0, 10, f'Seite {self.page_no()}/{{nb}}', align='C')
+
 
 # -----FUNCTIONS-----
 def initiate_pdf_data():
@@ -57,6 +63,13 @@ def create_pdf_data(df):
     PDF_DATA.cell(85)
     PDF_DATA.cell(70, 15, f'Gesamte Arbeitszeit: ', 0, 0, 'L')
     PDF_DATA.cell(0, 15, f'{TIME}', 0, 1, 'L')
+    if COMPANY_DATA[7] == "1":
+        PDF_DATA.ln(20)
+        PDF_DATA.cell(122, 11, f'_______________________', 0, 0, 'L')
+        PDF_DATA.cell(0, 11, f'_______________________', 0, 1, 'L')
+        PDF_DATA.set_font('helvetica', '', 11)
+        PDF_DATA.cell(122, 0, f'Ort, Datum', 0, 0, 'L')
+        PDF_DATA.cell(0, 0, f'Unterschrift', 0, 1, 'L')
 
 
 def create_pdf(df, time_str, header_label):

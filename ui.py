@@ -9,6 +9,10 @@ class GUI_Setup:
     # -----Main Window Setup-----
     def __init__(self):
         # -----Option Window Init-----
+        self.use_site_cb = None
+        self.use_site_var = None
+        self.use_sign_cb = None
+        self.use_sign_var = None
         self.use_logo_var = None
         self.use_logo_cb = None
         self.logo_size_entry = None
@@ -141,11 +145,17 @@ class GUI_Setup:
 
     # -----Option Window Setup-----
     def open_option_window(self):
+        for widget in self.root.winfo_children():
+            if isinstance(widget, Toplevel):
+                return
+
         self.use_logo_var = IntVar()
+        self.use_sign_var = IntVar()
+        self.use_site_var = IntVar()
 
         options_window = Toplevel(self.root)
         options_window.config(bg=THEME_COLOR, pady=20, padx=20)
-        options_window.geometry("400x300")
+        options_window.geometry("400x400")
         options_window.iconbitmap("data/hero.ico")
         options_window.title("Optionen")
 
@@ -156,6 +166,10 @@ class GUI_Setup:
         options_logo_label = Label(options_window)
         options_logo_label.config(text="Logo Einstellungen", bg=THEME_COLOR, font=("Arial", 12), fg="#ffdd00")
         options_logo_label.place(x=190, y=120, anchor=CENTER)
+
+        options_other_label = Label(options_window)
+        options_other_label.config(text="Andere Einstellungen", bg=THEME_COLOR, font=("Arial", 12), fg="#ffdd00")
+        options_other_label.place(x=190, y=250, anchor=CENTER)
 
         self.company_name_entry = Entry(options_window)
         self.company_name_entry.insert(0, string=pdf.COMPANY_DATA[0])
@@ -205,13 +219,31 @@ class GUI_Setup:
         self.use_logo_cb.place(x=5, y=215, anchor="w")
         self.use_logo_var.set(int(pdf.COMPANY_DATA[6]))
 
+        self.use_sign_cb = Checkbutton(options_window)
+        self.use_sign_cb.config(variable=self.use_sign_var, text="Unterschriftsfeld", bg=THEME_COLOR,
+                                highlightcolor=THEME_COLOR, command=self.use_sign)
+        self.use_sign_cb.place(x=5, y=280, anchor="w")
+        self.use_sign_var.set(int(pdf.COMPANY_DATA[7]))
+
+        self.use_site_cb = Checkbutton(options_window)
+        self.use_site_cb.config(variable=self.use_site_var, text="Seitenzähler", bg=THEME_COLOR,
+                                highlightcolor=THEME_COLOR, command=self.use_site)
+        self.use_site_cb.place(x=5, y=300, anchor="w")
+        self.use_site_var.set(int(pdf.COMPANY_DATA[8]))
+
         self.save_options_btn = Button(options_window)
         self.save_options_btn.config(text="Speichern", width=20, command=self.save_options)
-        self.save_options_btn.place(x=190, y=250, anchor=CENTER)
+        self.save_options_btn.place(x=190, y=350, anchor=CENTER)
 
     # -----FUNCTIONS-----
     def use_logo(self):
         pdf.COMPANY_DATA[6] = str(self.use_logo_var.get())
+
+    def use_sign(self):
+        pdf.COMPANY_DATA[7] = str(self.use_sign_var.get())
+
+    def use_site(self):
+        pdf.COMPANY_DATA[8] = str(self.use_site_var.get())
 
     def save_options(self):
         pdf.COMPANY_DATA[0] = self.company_name_entry.get()
